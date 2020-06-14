@@ -1,11 +1,13 @@
 package com.esisa.contacts.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import com.esisa.contacts.domain.Contact;
+import com.querydsl.core.types.Predicate;
 
 public interface ContactService {
 
@@ -39,4 +41,16 @@ public interface ContactService {
     * @param id the id of the entity.
     */
    void delete(Long id);
+   
+   
+   /**
+    * find contact by serch creteria.
+    *
+    * @param firstname
+    * @param lastName
+    * @param email
+    * @param graduationYear
+    * @param companyPosition
+    */
+   List<Contact> searchContact(String firstName, String lastName, String email, String graduationYear, String companyPosition);
 }

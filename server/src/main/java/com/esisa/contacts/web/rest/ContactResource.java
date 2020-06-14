@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.esisa.contacts.domain.Contact;
@@ -81,4 +82,18 @@ public class ContactResource {
         contactService.delete(id);
         return ResponseEntity.noContent().build();
     }
+    
+    
+    @GetMapping("/search-contacts")
+    public ResponseEntity<List<Contact>> searchContacts(
+    		@RequestParam(name = "firstName", required = false) String firstName,
+    		@RequestParam(name = "lastName", required = false) String lastName,
+    		@RequestParam(name = "email", required = false) String email,
+    		@RequestParam(name = "graduationYear", required = false) String graduationYear,
+    		@RequestParam(name = "companyPosition", required = false) String companyPosition
+    		) {
+    	List<Contact> contacts = contactService.searchContact(firstName, lastName, email, graduationYear, companyPosition);
+		return ResponseEntity.ok().body(contacts);
+    }
+    
 }
