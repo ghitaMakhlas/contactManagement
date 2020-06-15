@@ -18,6 +18,13 @@ public interface ContactService {
     * @return the persisted entity.
     */
    Contact save(Contact contact);
+   
+   /**
+    * Get all the contacts.
+    *
+    * @return the list of entities.
+    */
+   List<Contact> findAll();
 
    /**
     * Get all the contacts.

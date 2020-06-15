@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -77,4 +78,10 @@ public class EntrepriseServiceImpl implements EntrepriseService {
         log.debug("Request to delete Entreprise : {}", id);
         entrepriseRepository.deleteById(id);
     }
+
+	@Override
+	public List<Entreprise> findAll() {
+		// TODO Auto-generated method stub
+		return entrepriseRepository.findAll();
+	}
 }

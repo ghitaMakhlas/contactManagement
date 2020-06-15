@@ -90,4 +90,10 @@ public class ContactServiceImpl implements ContactService {
 		.forEach(contacts::add);
 		return contacts;
 	}
+
+	@Override
+	public List<Contact> findAll() {
+		// TODO Auto-generated method stub
+		return contactRepository.findAll();
+	}
 }
