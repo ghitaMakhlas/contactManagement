@@ -1,7 +1,9 @@
 package com.esisa.contacts.service.impl;
 
 import com.esisa.contacts.service.ContactService;
+import com.querydsl.core.types.Predicate;
 import com.esisa.contacts.domain.Contact;
+import com.esisa.contacts.repository.ContactPredicate;
 import com.esisa.contacts.repository.ContactRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +13,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -77,4 +81,19 @@ public class ContactServiceImpl implements ContactService {
         log.debug("Request to delete Contact : {}", id);
         contactRepository.deleteById(id);
     }
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<Contact> searchContact(String firstName, String lastName, String email, String graduationYear, String companyPosition) {
+		List<Contact> contacts = new ArrayList<Contact>();
+		contactRepository.findAll(ContactPredicate.findBySearchCriteria(firstName, lastName, email, graduationYear, companyPosition))
+		.forEach(contacts::add);
+		return contacts;
+	}
+
+	@Override
+	public List<Contact> findAll() {
+		// TODO Auto-generated method stub
+		return contactRepository.findAll();
+	}
 }

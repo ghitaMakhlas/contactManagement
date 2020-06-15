@@ -1,5 +1,6 @@
 package com.esisa.contacts.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
@@ -17,6 +18,15 @@ public interface EntrepriseService {
      */
     Entreprise save(Entreprise entreprise);
 
+    
+    /**
+     * Get all the entreprises.
+     *
+     * @return the list of entities.
+     */
+    List<Entreprise> findAll();
+    
+    
     /**
      * Get all the entreprises.
      *
